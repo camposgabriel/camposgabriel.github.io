@@ -1,12 +1,1006 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina do Gabriel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Soluções Digitais | Sites, Instagram Profissional e Consultoria</title>
+  <meta name="description" content="Agência digital especializada em criação de sites, páginas profissionais no Instagram, consultoria e assistência técnica para pequenas empresas.">
+
+  <!-- ================= ESTILOS ================= -->
+  <style>
+    /* ---------- Reset básico ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Paleta de azuis usada em todo o site */
+      --azul-escuro: #06213d;
+      --azul-principal: #0a4b8c;
+      --azul-medio: #1470b8;
+      --azul-claro: #4fa8e0;
+      --azul-bem-claro: #eaf4fc;
+      --branco: #ffffff;
+      --cinza-texto: #4a5a6a;
+      --sombra: rgba(10, 75, 140, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth; /* rolagem suave ao clicar nos links do menu */
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--cinza-texto);
+      line-height: 1.6;
+      background: var(--branco);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { text-decoration: none; color: inherit; }
+
+    ul { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .secao-titulo {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .secao-titulo span {
+      color: var(--azul-medio);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .secao-titulo h2 {
+      font-size: 2rem;
+      color: var(--azul-escuro);
+      margin-top: 8px;
+    }
+
+    .secao-titulo p {
+      max-width: 600px;
+      margin: 12px auto 0;
+    }
+
+    /* ---------- Botões ---------- */
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primario {
+      background: var(--branco);
+      color: var(--azul-principal);
+    }
+
+    .btn-primario:hover {
+      background: var(--azul-bem-claro);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--branco);
+      color: var(--branco);
+    }
+
+    .btn-outline:hover {
+      background: var(--branco);
+      color: var(--azul-principal);
+    }
+
+    /* ================= CABEÇALHO / MENU ================= */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--branco);
+      box-shadow: 0 2px 12px var(--sombra);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--azul-principal);
+    }
+
+    .logo span { color: var(--azul-claro); }
+
+    .menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .menu a {
+      font-weight: 500;
+      color: var(--azul-escuro);
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .menu a:hover { color: var(--azul-medio); }
+
+    .menu .btn {
+      background: var(--azul-principal);
+      color: var(--branco);
+      padding: 10px 22px;
+    }
+
+    .menu .btn:hover {
+      background: var(--azul-medio);
+    }
+
+    /* Botão hambúrguer (aparece só no mobile) */
+    .hamburguer {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .hamburguer span {
+      width: 26px;
+      height: 3px;
+      background: var(--azul-principal);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-principal) 60%, var(--azul-medio));
+      color: var(--branco);
+      padding: 160px 20px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      /* Forma decorativa no fundo do hero */
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      top: -200px;
+      right: -150px;
+    }
+
+    .hero-conteudo {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-texto { flex: 1 1 500px; }
+
+    .hero-texto h1 {
+      font-size: 2.6rem;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    .hero-texto h1 span { color: var(--azul-claro); }
+
+    .hero-texto p {
+      color: #d6e6f5;
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+      max-width: 500px;
+    }
+
+    .hero-botoes { display: flex; gap: 15px; flex-wrap: wrap; }
+
+    .hero-imagem {
+      flex: 1 1 350px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* "Cartão" ilustrativo, feito só com CSS (sem precisar de imagem externa) */
+    .cartao-ilustracao {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      padding: 30px;
+      width: 100%;
+      max-width: 380px;
+      backdrop-filter: blur(4px);
+    }
+
+    .cartao-ilustracao .linha {
+      height: 12px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.25);
+      margin-bottom: 14px;
+    }
+
+    .cartao-ilustracao .linha.curta { width: 60%; }
+    .cartao-ilustracao .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .cartao-ilustracao .bloco {
+      height: 70px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--azul-claro), var(--azul-medio));
+    }
+
+    /* ================= SOBRE ================= */
+    .sobre {
+      padding: 90px 0;
+      background: var(--branco);
+    }
+
+    .sobre-grid {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .sobre-texto { flex: 1 1 450px; }
+    .sobre-numeros { flex: 1 1 400px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .sobre-texto span.tag {
+      color: var(--azul-medio);
+      font-weight: 600;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .sobre-texto h2 {
+      font-size: 2rem;
+      color: var(--azul-escuro);
+      margin: 10px 0 18px;
+    }
+
+    .numero-card {
+      background: var(--azul-bem-claro);
+      border-radius: 14px;
+      padding: 25px 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .numero-card:hover { transform: translateY(-6px); }
+
+    .numero-card h3 {
+      font-size: 2.2rem;
+      color: var(--azul-principal);
+    }
+
+    .numero-card p {
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    /* ================= SERVIÇOS ================= */
+    .servicos {
+      padding: 90px 0;
+      background: var(--azul-bem-claro);
+    }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 28px;
+    }
+
+    .servico-card {
+      background: var(--branco);
+      border-radius: 16px;
+      padding: 34px 26px;
+      text-align: left;
+      box-shadow: 0 8px 24px var(--sombra);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 4px solid var(--azul-medio);
+    }
+
+    .servico-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 30px var(--sombra);
+    }
+
+    .servico-icone {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--azul-medio), var(--azul-principal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--branco);
+      margin-bottom: 18px;
+    }
+
+    .servico-card h3 {
+      color: var(--azul-escuro);
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .servico-card p { font-size: 0.95rem; }
+
+    /* ================= PROCESSO / COMO FUNCIONA ================= */
+    .processo {
+      padding: 90px 0;
+      background: var(--branco);
+    }
+
+    .processo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .processo-item .numero {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--azul-principal);
+      color: var(--branco);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 16px;
+      font-size: 1.1rem;
+    }
+
+    .processo-item h4 {
+      color: var(--azul-escuro);
+      margin-bottom: 8px;
+    }
+
+    .processo-item p { font-size: 0.92rem; }
+
+    /* ================= DEPOIMENTOS ================= */
+    .depoimentos {
+      padding: 90px 0;
+      background: var(--azul-bem-claro);
+    }
+
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px;
+    }
+
+    .depoimento-card {
+      background: var(--branco);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 8px 24px var(--sombra);
+    }
+
+    .depoimento-card .estrelas {
+      color: #f5b400;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .depoimento-card p.texto {
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .depoimento-autor {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar-inicial {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--azul-medio);
+      color: var(--branco);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .depoimento-autor strong { color: var(--azul-escuro); display: block; font-size: 0.95rem; }
+    .depoimento-autor small { font-size: 0.8rem; }
+
+    /* ================= CHAMADA FINAL (CTA) ================= */
+    .cta {
+      background: linear-gradient(135deg, var(--azul-principal), var(--azul-escuro));
+      color: var(--branco);
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .cta h2 { font-size: 1.9rem; margin-bottom: 12px; }
+    .cta p { color: #d6e6f5; max-width: 500px; margin: 0 auto 26px; }
+
+    /* ================= CONTATO ================= */
+    .contato {
+      padding: 90px 0;
+      background: var(--branco);
+    }
+
+    .contato-grid {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .contato-info { flex: 1 1 320px; }
+    .contato-form { flex: 1 1 420px; }
+
+    .info-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+
+    .info-icone {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--azul-bem-claro);
+      color: var(--azul-principal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-item strong { color: var(--azul-escuro); display: block; margin-bottom: 3px; }
+
+    .contato-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: var(--azul-bem-claro);
+      padding: 30px;
+      border-radius: 16px;
+    }
+
+    .contato-form input,
+    .contato-form textarea {
+      padding: 13px 16px;
+      border-radius: 8px;
+      border: 1px solid #cfe0f0;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: var(--branco);
+    }
+
+    .contato-form input:focus,
+    .contato-form textarea:focus {
+      outline: 2px solid var(--azul-claro);
+    }
+
+    .contato-form button {
+      background: var(--azul-principal);
+      color: var(--branco);
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contato-form button:hover { background: var(--azul-medio); }
+
+    #mensagem-status {
+      font-size: 0.9rem;
+      text-align: center;
+      min-height: 18px;
+    }
+
+    /* ================= RODAPÉ ================= */
+    footer {
+      background: var(--azul-escuro);
+      color: #cfe0f0;
+      padding: 50px 0 20px;
+    }
+
+    .rodape-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .rodape-coluna h4 {
+      color: var(--branco);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+
+    .rodape-coluna ul li { margin-bottom: 10px; font-size: 0.9rem; }
+    .rodape-coluna ul li a:hover { color: var(--azul-claro); }
+
+    .rodape-baixo {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 18px;
+      font-size: 0.82rem;
+    }
+
+    /* ================= BOTÃO FLUTUANTE WHATSAPP ================= */
+    .whatsapp-flutuante {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #25d366;
+      color: var(--branco);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      z-index: 999;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-flutuante:hover { transform: scale(1.1); }
+
+    /* ================= BOTÃO VOLTAR AO TOPO ================= */
+    #btn-topo {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: var(--azul-principal);
+      color: var(--branco);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: none; /* aparece via JS quando o usuário rola a página */
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 16px var(--sombra);
+      z-index: 999;
+      border: none;
+      font-size: 1.2rem;
+    }
+
+    /* ================= RESPONSIVO (CELULARES E TABLETS) ================= */
+    @media (max-width: 860px) {
+      .menu {
+        position: fixed;
+        top: 68px;
+        right: 0;
+        background: var(--branco);
+        flex-direction: column;
+        align-items: flex-start;
+        width: 240px;
+        padding: 20px;
+        gap: 18px;
+        box-shadow: -4px 4px 20px var(--sombra);
+        transform: translateX(110%);
+        transition: transform 0.3s ease;
+      }
+
+      .menu.aberto { transform: translateX(0); }
+
+      .hamburguer { display: flex; }
+
+      .hero-conteudo { flex-direction: column; text-align: center; }
+      .hero-texto p { margin: 0 auto 28px; }
+      .hero-botoes { justify-content: center; }
+
+      .sobre-grid { flex-direction: column; }
+      .contato-grid { flex-direction: column; }
+      .rodape-grid { flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-texto h1 { font-size: 2rem; }
+      .secao-titulo h2 { font-size: 1.6rem; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Minha pagina de teste</h1>
-    <p>vscode</p>
+
+  <!-- ================= CABEÇALHO ================= -->
+  <header>
+    <nav>
+      <a href="#topo" class="logo">CMS Soluções Digitais</a>
+
+      <ul class="menu" id="menu">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#processo">Como Funciona</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato" class="btn">Fale Conosco</a></li>
+      </ul>
+
+      <!-- Botão hambúrguer, exibido apenas em telas pequenas -->
+      <button class="hamburguer" id="hamburguer" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="topo">
+    <div class="hero-conteudo">
+      <div class="hero-texto">
+        <h1>Transforme a presença digital da sua <span>pequena empresa</span></h1>
+        <p>
+          Criamos sites profissionais, páginas de Instagram que vendem, e oferecemos
+          consultoria e assistência técnica contínua para o seu negócio crescer online.
+        </p>
+        <div class="hero-botoes">
+          <a href="#contato" class="btn btn-primario">Solicitar Orçamento</a>
+          <a href="#servicos" class="btn btn-outline">Ver Serviços</a>
+        </div>
+      </div>
+
+      <div class="hero-imagem">
+        <!-- Ilustração simples feita apenas com HTML/CSS, sem dependência de imagens externas -->
+        <div class="cartao-ilustracao">
+          <div class="linha"></div>
+          <div class="linha curta"></div>
+          <div class="linha"></div>
+          <div class="grade">
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOBRE ================= -->
+  <section class="sobre" id="sobre">
+    <div class="container sobre-grid">
+      <div class="sobre-texto">
+        <span class="tag">Quem Somos</span>
+        <h2>Uma agência pensada para pequenos negócios</h2>
+        <p>
+          A CMS Soluções Digitais nasceu para aproximar pequenas empresas do mundo digital
+          de forma simples e eficiente. Entendemos os desafios de quem está começando ou
+          precisa se modernizar, e por isso entregamos soluções completas: do site ao
+          suporte técnico contínuo, sempre com atendimento próximo e personalizado.
+        </p>
+      </div>
+
+      <div class="sobre-numeros">
+        <div class="numero-card">
+          <h3>+50</h3>
+          <p>Projetos entregues</p>
+        </div>
+        <div class="numero-card">
+          <h3>100%</h3>
+          <p>Foco em pequenas empresas</p>
+        </div>
+        <div class="numero-card">
+          <h3>24h</h3>
+          <p>Tempo médio de resposta</p>
+        </div>
+        <div class="numero-card">
+          <h3>5★</h3>
+          <p>Satisfação dos clientes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVIÇOS ================= -->
+  <section class="servicos" id="servicos">
+    <div class="container">
+      <div class="secao-titulo">
+        <span>O que fazemos</span>
+        <h2>Nossos Serviços</h2>
+        <p>Soluções completas para colocar (ou manter) sua empresa em evidência no ambiente digital.</p>
+      </div>
+
+      <div class="servicos-grid">
+        <div class="servico-card">
+          <div class="servico-icone">🌐</div>
+          <h3>Criação de Sites</h3>
+          <p>Sites institucionais, catálogos e landing pages modernos, rápidos e otimizados para atrair e converter clientes.</p>
+        </div>
+
+        <div class="servico-card">
+          <div class="servico-icone">📱</div>
+          <h3>Páginas Profissionais no Instagram</h3>
+          <p>Organizamos e estruturamos seu perfil comercial com identidade visual, destaques e biografia estratégica.</p>
+        </div>
+
+        <div class="servico-card">
+          <div class="servico-icone">💡</div>
+          <h3>Consultoria Digital</h3>
+          <p>Orientação personalizada sobre presença online, redes sociais e ferramentas para alavancar seus resultados.</p>
+        </div>
+
+        <div class="servico-card">
+          <div class="servico-icone">🛠️</div>
+          <h3>Assistência Técnica</h3>
+          <p>Suporte contínuo para manutenção, atualizações e ajustes no seu site ou páginas digitais, sempre que precisar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMO FUNCIONA ================= -->
+  <section class="processo" id="processo">
+    <div class="container">
+      <div class="secao-titulo">
+        <span>Passo a passo</span>
+        <h2>Como Funciona</h2>
+        <p>Um processo simples e transparente do primeiro contato até a entrega final.</p>
+      </div>
+
+      <div class="processo-grid">
+        <div class="processo-item">
+          <div class="numero">1</div>
+          <h4>Contato Inicial</h4>
+          <p>Você nos envia sua ideia e necessidades através do formulário ou WhatsApp.</p>
+        </div>
+        <div class="processo-item">
+          <div class="numero">2</div>
+          <h4>Proposta Personalizada</h4>
+          <p>Elaboramos uma proposta sob medida, com prazos e valores claros.</p>
+        </div>
+        <div class="processo-item">
+          <div class="numero">3</div>
+          <h4>Desenvolvimento</h4>
+          <p>Colocamos a mão na massa e mantemos você informado em cada etapa.</p>
+        </div>
+        <div class="processo-item">
+          <div class="numero">4</div>
+          <h4>Entrega e Suporte</h4>
+          <p>Site ou página no ar, com suporte técnico contínuo para o que precisar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEPOIMENTOS ================= -->
+  <section class="depoimentos" id="depoimentos">
+    <div class="container">
+      <div class="secao-titulo">
+        <span>Clientes satisfeitos</span>
+        <h2>O que dizem sobre nós</h2>
+      </div>
+
+      <div class="depoimentos-grid">
+        <div class="depoimento-card">
+          <div class="estrelas">★★★★★</div>
+          <p class="texto">"Meu site ficou incrível e já recebi vários clientes novos através dele. Atendimento excelente do início ao fim."</p>
+          <div class="depoimento-autor">
+            <div class="avatar-inicial">M</div>
+            <div>
+              <strong>Mariana Souza</strong>
+              <small>Loja de Roupas</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento-card">
+          <div class="estrelas">★★★★★</div>
+          <p class="texto">"A consultoria me ajudou a organizar meu Instagram profissional. Hoje vendo muito mais pelo perfil da empresa."</p>
+          <div class="depoimento-autor">
+            <div class="avatar-inicial">R</div>
+            <div>
+              <strong>Rafael Costa</strong>
+              <small>Salão de Beleza</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento-card">
+          <div class="estrelas">★★★★★</div>
+          <p class="texto">"Sempre que preciso de suporte técnico, sou atendido rapidamente. Recomendo a CMS de olhos fechados."</p>
+          <div class="depoimento-autor">
+            <div class="avatar-inicial">J</div>
+            <div>
+              <strong>Juliana Alves</strong>
+              <small>Confeitaria</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHAMADA FINAL ================= -->
+  <section class="cta">
+    <h2>Pronto para alavancar seu negócio?</h2>
+    <p>Fale agora mesmo com a nossa equipe e descubra a melhor solução digital para sua empresa.</p>
+    <a href="#contato" class="btn btn-primario">Quero Falar com um Especialista</a>
+  </section>
+
+  <!-- ================= CONTATO ================= -->
+  <section class="contato" id="contato">
+    <div class="container contato-grid">
+      <div class="contato-info">
+        <div class="secao-titulo" style="text-align:left; margin-bottom:26px;">
+          <span>Contato</span>
+          <h2>Vamos Conversar</h2>
+          <p style="margin-left:0;">Preencha o formulário ou utilize um dos canais abaixo. Retornamos o mais rápido possível.</p>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icone">📧</div>
+          <div>
+            <strong>E-mail</strong>
+            contato@cmssolucoesdigitais.com.br
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icone">📱</div>
+          <div>
+            <strong>WhatsApp</strong>
+            (00) 00000-0000
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icone">📍</div>
+          <div>
+            <strong>Atendimento</strong>
+            Atendimento online para todo o Brasil
+          </div>
+        </div>
+      </div>
+
+      <div class="contato-form">
+        <!-- Formulário simples de contato. Por padrão apenas simula o envio (ver JS abaixo).
+             Para receber os e-mails de fato, integre este formulário a um serviço como
+             Formspree, EmailJS ou similar, ou troque a action para o seu backend. -->
+        <form id="form-contato">
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+          <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+          <input type="tel" id="telefone" name="telefone" placeholder="Seu telefone/WhatsApp">
+          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+          <button type="submit">Enviar Mensagem</button>
+          <p id="mensagem-status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer>
+    <div class="container rodape-grid">
+      <div class="rodape-coluna">
+        <h4>CMS Soluções Digitais</h4>
+        <p style="font-size:0.9rem; max-width:280px;">
+          Ajudando pequenas empresas a crescerem no ambiente digital com sites,
+          redes sociais, consultoria e suporte técnico.
+        </p>
+      </div>
+
+      <div class="rodape-coluna">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#processo">Como Funciona</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="rodape-coluna">
+        <h4>Redes Sociais</h4>
+        <ul>
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rodape-baixo">
+      &copy; <span id="ano-atual"></span> CMS Soluções Digitais. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- ================= BOTÕES FLUTUANTES ================= -->
+  <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="whatsapp-flutuante" aria-label="Falar no WhatsApp">
+    💬
+  </a>
+
+  <button id="btn-topo" aria-label="Voltar ao topo">↑</button>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    /* ---------- Menu mobile (abrir/fechar) ---------- */
+    const hamburguer = document.getElementById('hamburguer');
+    const menu = document.getElementById('menu');
+
+    hamburguer.addEventListener('click', () => {
+      menu.classList.toggle('aberto');
+    });
+
+    // Fecha o menu automaticamente ao clicar em um link (melhora a experiência no celular)
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('aberto');
+      });
+    });
+
+    /* ---------- Botão "voltar ao topo" ---------- */
+    const btnTopo = document.getElementById('btn-topo');
+
+    window.addEventListener('scroll', () => {
+      // Só mostra o botão depois que o usuário rolar 400px para baixo
+      btnTopo.style.display = window.scrollY > 400 ? 'flex' : 'none';
+    });
+
+    btnTopo.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ---------- Ano automático no rodapé ---------- */
+    document.getElementById('ano-atual').textContent = new Date().getFullYear();
+
+    /* ---------- Envio do formulário de contato ----------
+       Este exemplo apenas simula o envio, exibindo uma mensagem de sucesso.
+       Para envio real dos dados, integre com um serviço como Formspree
+       (https://formspree.io) ou EmailJS (https://www.emailjs.com),
+       ou conecte a um backend próprio. */
+    const formContato = document.getElementById('form-contato');
+    const mensagemStatus = document.getElementById('mensagem-status');
+
+    formContato.addEventListener('submit', function (evento) {
+      evento.preventDefault(); // impede o recarregamento da página
+
+      // Aqui você poderia enviar os dados via fetch() para um serviço externo
+      mensagemStatus.textContent = 'Mensagem enviada com sucesso! Em breve entraremos em contato.';
+      mensagemStatus.style.color = '#0a4b8c';
+
+      formContato.reset(); // limpa os campos do formulário
+    });
+  </script>
+
 </body>
 </html>
